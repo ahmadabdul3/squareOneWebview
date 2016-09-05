@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		Comments
+	</title>
+	<link rel="stylesheet" type="text/css" href="index.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+</head>
+<body>
+	<div class='h-100' ng-app='scrollView' ng-controller='scrollViewController as svc'>
+
+		<div class='view page-width'>
+		  <header class='view-header'>
+		    <nav class='page-width'>
+		      <div class='nav-item'>
+		        .
+		      </div>
+		      <div class='nav-item'>
+		        {{svc.sectionTitle}}
+		      </div>
+		      <div class='nav-item'>
+		        .
+		      </div>
+		    </nav>
+		  </header>
+		  <div class="comments-header">
+		  	<div class='content'>
+		  		<label>
+		  			<p class='text'>
+		  				{{svc.ideaText}}
+		  			</p>
+		  			<p class='person'>
+		  				<span class='by'>
+		  					by
+		  				</span>
+		  				<span class='name'>
+		  					{{svc.ideaAuthor}}
+		  				</span>
+		  			</p>
+		  		</label>
+		  	</div>
+		  </div>
+		  <div class='scroll-view'>
+		    
+		    <div ng-repeat='item in svc.data' ng-click='svc.flipCard(item.id)' class='comment {{item.footerClass}}'>
+		    	
+		      <header>
+		      	<div class='content'>
+		      		<div class='item person'>
+		      			<img class='person-item' src='{{item.img}}'/>
+		      			<label class='person-item'>
+		      				{{item.name}}
+		      			</label>
+		      		</div>
+		      		<div class='item posted-date'>
+		      			{{item.timeSince}}
+		      		</div>
+		      	</div>
+		        
+		      </header>
+		      <article>
+		      	<div class='content'>
+			      	<p>
+			      		{{item.comment}}
+			      	</p>
+		      	</div>
+		      </article>
+		    
+		    
+		    </div>
+
+		  </div> <!-- end scroll-view -->
+		  
+		  
+		</div> <!-- end view -->
+
+
+
+	</div>
+
+	<script type="text/javascript">
+		angular.module('scrollView', [])
+.controller('scrollViewController', scrollViewController);
+
+function scrollViewController() {
+	var self = this;
+	self.ideaText = 'To create the UI for SquareOne and have a good project.';
+	self.ideaAuthor = 'John Smith';
+  self.sectionTitle = 'Comments';
+  
+  // list of person, has id, name, comment, timeSince
+  self.data = [
+  	{
+    	id: 1,
+    	name: 'John Smith',
+      img: 'http://www.loudounsmilecenter.com/images/image_implant.jpg',
+      comment: 'dolor sit amet, consectetur adipiscing elit, sed do eiusmod aliqua.',
+      timeSince: '12h',
+    },
+    {
+    	id: 2,
+    	name: 'John Smith',
+      img: 'http://www.loudounsmilecenter.com/images/image_implant.jpg',
+      comment: 'dolor sit amet, consectetur adipiscing elit, sed do eiusmod aliqua.',
+      timeSince: '2h',
+    },
+    {
+    	id: 3,
+    	name: 'John Smith',
+      img: 'http://www.loudounsmilecenter.com/images/image_implant.jpg',
+      comment: 'dolor sit amet, consectetur adipiscing elit, sed do eiusmod aliqua.',
+      timeSince: '1m',
+    },
+    {
+    	id: 4,
+    	name: 'John Smith',
+      img: 'http://www.loudounsmilecenter.com/images/image_implant.jpg',
+      comment: 'dolor sit amet, consectetur adipiscing elit, sed do eiusmod aliqua.',
+      timeSince: '4w',
+    },
+    {
+    	id: 5,
+    	name: 'John Smith',
+      img: 'http://www.loudounsmilecenter.com/images/image_implant.jpg',
+      comment: 'dolor sit amet, consectetur adipiscing elit, sed do eiusmod aliqua.',
+      timeSince: '2w',
+    },
+    {
+    	id: 6,
+    	name: 'John Smith',
+      img: 'http://www.loudounsmilecenter.com/images/image_implant.jpg',
+      comment: 'dolor sit amet, consectetur adipiscing elit, sed do eiusmod aliqua.',
+      timeSince: '12h',
+    },
+    {
+    	id: 7,
+    	name: 'John Smith',
+      img: 'http://www.loudounsmilecenter.com/images/image_implant.jpg',
+      comment: 'dolor sit amet, consectetur adipiscing elit, sed do eiusmod aliqua.',
+      timeSince: '2h',
+    },
+    {
+    	id: 8,
+    	name: 'John Smith',
+      img: 'http://www.loudounsmilecenter.com/images/image_implant.jpg',
+      comment: 'dolor sit amet, consectetur adipiscing elit, sed do eiusmod aliqua.',
+      timeSince: '1h',
+    },
+  ];
+}
+	</script>
+</body>
+</html>

@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		SquareOne
+	</title>
+	<link rel="stylesheet" type="text/css" href="index.css">
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css">
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>
+	<script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
+</head>
+<body ng-app='scrollView' ng-controller='scrollViewController as svc'>
+
+<div class='image-slideshow-container {{svc.displayClass}}'>
+<div class='image-slideshow-background'></div>
+
+<div class='image-slideshow-box'>
+	<div class='exit-row'>
+		<div class='content'>
+			<label ng-click='svc.close()'>
+				+
+			</label>
+		</div>
+	</div>
+	<header class='slideshow-author'>
+		<div class='content'>
+			<div class='item person'>
+				<div class='image'>
+					<img class='person-item' src='{{svc.imageSlideshowData.personInfo.personImage}}'/>
+				</div>
+				<div class='text'>
+					<h3>
+						{{svc.imageSlideshowData.personInfo.personName}}
+					</h3>
+					<label>
+						{{svc.imageSlideshowData.personInfo.personProfession}}
+					</label>
+				</div>
+			</div>
+			<div class='item follow image'>
+				
+			</div>
+			<div class='item message image'>
+				
+			</div>
+		</div>
+	</header>
+	<div class='scrollable'>
+
+		<div class='image-slideshow vertical' ng-repeat='slideshowItem in svc.imageSlideshowData.images'>
+			<header>
+				<div class='content'>
+					<label>
+						{{slideshowItem.date}}
+					</label>
+				</div>
+			</header>
+			<div class='image-box'>
+				
+				<img src='{{slideshowItem.image}}'/>
+				
+			</div>
+			<div class='action-buttons'>
+				<div class='button'>
+					Like
+				</div>
+				<div class='button'>
+					Comment
+				</div>
+			</div>
+			<div class='info'>
+				<div class='likes-comments'>
+					<div class='content'>
+						<div class='item'>
+							{{slideshowItem.numLikes}} likes
+						</div>
+						<div class='item'>
+						{{slideshowItem.numComments}} comments
+						</div>
+					</div>
+				</div>
+				<article>
+					<div class='content'>
+						<p>
+							{{slideshowItem.imageSummary}}
+						</p>
+					</div>
+				</article>
+			</div>
+		</div>
+		
+
+	</div> <!-- end scrollable -->
+</div>
+</div>
+
+
+	<div class='h-100'>
+
+		<div class='view page-width'>
+		  <header class='view-header'>
+		    <nav class='page-width'>
+		      <div class='nav-item'>
+		        .
+		      </div>
+		      <div class='nav-item'>
+		        SquareOne
+		      </div>
+		      <div class='nav-item'>
+		        .
+		      </div>
+		    </nav>
+		  </header>
+		  <div class="people-startups">
+		  	<label class='item selected'>
+		  		People
+		  	</label>
+		  	<label class='item'>
+		  		Start-Ups
+		  	</label>
+		  </div>
+		  <div class='scroll-view'>
+		    
+		    <div ng-repeat='item in svc.data' ng-click='svc.flipCard($event, item.id)' class='explore-box {{item.flippedClass}}'>
+		    	<div class="box-shadow">
+		    	</div>
+		     	<div class='front'>
+		     		<header>
+		     			<div class="content">
+		     				<div class='content-item image'>
+		     					<div class='image-box'>
+		     						<div class='box-shadow'></div>
+		     						<img class='person-item' src='{{item.front.personProfileImage}}'/>
+		     					</div>
+		     				</div>
+		     				<div class='content-item person-info'>
+		     					<div class='name'>
+		     						{{item.front.personName}}
+		     					</div>
+		     					<div class='title'>
+		     						{{item.front.personProfession}}
+		     					</div>
+		     				</div>
+		     				<div class='content-item interaction selected add'>
+		     				</div>
+		     				<div class='content-item interaction share'>
+		     				</div>
+		     			</div>
+		     		</header>
+		     		<article>
+		     			<img src='{{item.front.personMainImage}}'/>
+		     		</article>
+		     		<footer>
+		     			<div class="content">
+		     				<label>
+		     					{{item.front.personSummary}}
+		     				</label>
+		     			</div>
+		     		</footer>
+		    	</div>
+			    <div class='back'>
+			      <header>
+			      	<div class='content'>
+			      		<h4>
+			      			{{item.back.personSchool}}
+			      		</h4>
+			      		<div class='info'>
+			      			<div class='info-item'>
+			      				<label class='number'>
+			      					{{item.back.numFollowers}}
+			      				</label>
+			      				<label class='text'>
+			      					Followers
+			      				</label>
+			      			</div>
+			      			<div class='info-item'>
+			      				<label class='number'>
+			      					{{item.back.numFollowing}}
+			      				</label>
+			      				<label class='text'>
+			      					Following
+			      				</label>
+			      			</div>
+			      			<div class='info-item'>
+			      				<label class='number'>
+			      					{{item.back.numStartups}}
+			      				</label>
+			      				<label class='text'>
+			      					Startups
+			      				</label>
+			      			</div>
+			      		</div>
+			      	</div>
+			      </header>
+			      <article>
+			      	<div class='content'>
+			      		<div class='title'>
+			      			Quick Bits
+			      		</div>
+			      		<ul>
+			      			<li ng-repeat='quickBit in item.back.quickBits'>
+			      				{{quickBit}}
+			      			</li>
+			      		</ul>
+			      		<div class='dots'>
+			      			<div class='dot selected'>
+			      			</div>
+			      			<div class='dot'>
+			      			</div>
+			      		</div>
+			      	</div>
+			      </article>
+			      <footer>
+			      	<div class='content'>
+			      		<div class='image-scroller-height'></div>
+			      		<div class='image-scroller'>
+			      			<div class='img scroller-image-box' ng-repeat='imageItem in item.back.images track by $index' ng-click='svc.show()'>
+			      				<img class='image-scroller-image' src='{{imageItem}}'/>
+			      			</div>
+			      		</div>
+			      	</div>
+			      </footer>
+			    </div>
+		    </div>
+
+		  </div> <!-- end scroll-view -->
+		  
+		  
+		</div> <!-- end view -->
+
+
+
+	</div>
+	
+
+	<script type="text/javascript">
+
+		$(function() {
+			
+		});
+
+
+		angular.module('scrollView', [])
+.controller('scrollViewController', scrollViewController)
+.controller('imageSlideshowController', imageSlideshowController)
+;
+
+function imageSlideshowController() {
+	var self = this;
+	
+}
+function scrollViewController() {
+	var self = this;
+
+  self.displayClass = 'hidden';
+
+	self.toggleDisplayClass = toggleDisplayClass;
+	self.close = close;
+	this.show = show;
+
+	function toggleDisplayClass() {
+		if(self.displayClass === 'hidden') {
+			self.displayClass = 'visible';
+		} else {
+			self.displayClass = 'hidden';
+		}
+	}
+	function close() {
+		self.displayClass = 'hidden';
+	}
+	function show() {
+		self.displayClass = 'visible';
+	}
+
+  self.flipCard = function($event, id) {
+  	//actually expands the card
+  	console.log($event.target.className);
+  	console.log(id);
+  	var element = $($event.target);
+  	if(element.hasClass('image-scroller-image') || element.hasClass('scroller-image-box')) {
+  		show();
+  	} else {
+	  	var classs = self.data[id - 1].flippedClass;
+	    if(classs === '') {
+	    	self.data[id - 1].flippedClass = 'flipped';
+	    } else {
+	    	self.data[id - 1].flippedClass = '';
+	    }
+	  }
+	  //$($event.target).flip();
+  };
+  self.imageSlideshowData = {
+  	personInfo: {
+  		personImage: 'http://www.loudounsmilecenter.com/images/image_implant.jpg',
+  		personName: 'John Smith',
+  		personProfession: 'Spanish Cuisine Chef',
+  	},
+  	images: [
+	  	{
+	  		id: 1,
+	  		date: 'April 27, 2016',
+	  		image: 'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+	  		numLikes: 50,
+	  		numComments: 50,
+	  		imageSummary: 'Some info about the image. Taken, not taken, posted whatever.',
+	  	},
+	  	{
+	  		id: 2,
+	  		date: 'April 27, 2016',
+	  		image: 'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+	  		numLikes: 50,
+	  		numComments: 50,
+	  		imageSummary: 'Some info about the image. Taken, not taken, posted whatever.',
+	  	},
+	  	{
+	  		id: 3,
+	  		date: 'April 27, 2016',
+	  		image: 'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+	  		numLikes: 50,
+	  		numComments: 50,
+	  		imageSummary: 'Some info about the image. Taken, not taken, posted whatever.',
+	  	},
+	  	{
+	  		id: 4,
+	  		date: 'April 27, 2016',
+	  		image: 'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+	  		numLikes: 50,
+	  		numComments: 50,
+	  		imageSummary: 'Some info about the image. Taken, not taken, posted whatever.',
+	  	},
+	  	{
+	  		id: 5,
+	  		date: 'April 27, 2016',
+	  		image: 'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+	  		numLikes: 50,
+	  		numComments: 50,
+	  		imageSummary: 'Some info about the image. Taken, not taken, posted whatever.',
+	  	},
+	  	{
+	  		id: 6,
+	  		date: 'April 27, 2030',
+	  		image: 'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+	  		numLikes: 50,
+	  		numComments: 50,
+	  		imageSummary: 'Some info about the image. Taken, not taken, posted whatever.',
+	  	},
+	  ],
+	};
+  self.data = [
+  	{
+    	id: 1,
+    	front: {
+    		personProfileImage: 'http://www.loudounsmilecenter.com/images/image_implant.jpg',
+    		personName: 'John Smith',
+    		personProfession: 'Spanish Cuisine Chef',
+    		personMainImage: 'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    		personSummary: 'Chef in NYC specializing in spanish food',
+    	},
+    	back: {
+    		personSchool: 'University of Connecticut',
+    		numFollowers: 14,
+    		numFollowing: 55,
+    		numStartups: 2,
+    		quickBits: [
+    			'Interened at someplace',
+    			'Studied at some place',
+    			'Created something somewhere',
+    		],
+    		images: [
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    		],
+    	},
+      flippedClass: '',
+    },
+    {
+    	id: 2,
+    	front: {
+    		personProfileImage: 'http://www.loudounsmilecenter.com/images/image_implant.jpg',
+    		personName: 'John Smith',
+    		personProfession: 'Spanish Cuisine Chef',
+    		personMainImage: 'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    		personSummary: 'Chef in NYC specializing in spanish food',
+    	},
+    	back: {
+    		personSchool: 'University of Connecticut',
+    		numFollowers: 14,
+    		numFollowing: 55,
+    		numStartups: 2,
+    		quickBits: [
+    			'Interened at someplace',
+    			'Studied at some place',
+    			'Created something somewhere',
+    		],
+    		images: [
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    		],
+    	},
+      flippedClass: '',
+    },
+    {
+    	id: 3,
+    	front: {
+    		personProfileImage: 'http://www.loudounsmilecenter.com/images/image_implant.jpg',
+    		personName: 'John Smith',
+    		personProfession: 'Spanish Cuisine Chef',
+    		personMainImage: 'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    		personSummary: 'Chef in NYC specializing in spanish food',
+    	},
+    	back: {
+    		personSchool: 'University of Connecticut',
+    		numFollowers: 14,
+    		numFollowing: 55,
+    		numStartups: 2,
+    		quickBits: [
+    			'Interened at someplace',
+    			'Studied at some place',
+    			'Created something somewhere',
+    		],
+    		images: [
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    		],
+    	},
+      flippedClass: '',
+    },
+    {
+    	id: 4,
+    	front: {
+    		personProfileImage: 'http://www.loudounsmilecenter.com/images/image_implant.jpg',
+    		personName: 'John Smith',
+    		personProfession: 'Spanish Cuisine Chef',
+    		personMainImage: 'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    		personSummary: 'Chef in NYC specializing in spanish food',
+    	},
+    	back: {
+    		personSchool: 'University of Connecticut',
+    		numFollowers: 14,
+    		numFollowing: 55,
+    		numStartups: 2,
+    		quickBits: [
+    			'Interened at someplace',
+    			'Studied at some place',
+    			'Created something somewhere',
+    		],
+    		images: [
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    		],
+    	},
+      flippedClass: '',
+    },
+    {
+    	id: 5,
+    	front: {
+    		personProfileImage: 'http://www.loudounsmilecenter.com/images/image_implant.jpg',
+    		personName: 'John Smith',
+    		personProfession: 'Spanish Cuisine Chef',
+    		personMainImage: 'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    		personSummary: 'Chef in NYC specializing in spanish food',
+    	},
+    	back: {
+    		personSchool: 'University of Connecticut',
+    		numFollowers: 14,
+    		numFollowing: 55,
+    		numStartups: 2,
+    		quickBits: [
+    			'Interened at someplace',
+    			'Studied at some place',
+    			'Created something somewhere',
+    		],
+    		images: [
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    		],
+    	},
+      flippedClass: '',
+    },
+    {
+    	id: 6,
+    	front: {
+    		personProfileImage: 'http://www.loudounsmilecenter.com/images/image_implant.jpg',
+    		personName: 'John Smith',
+    		personProfession: 'Spanish Cuisine Chef',
+    		personMainImage: 'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    		personSummary: 'Chef in NYC specializing in spanish food',
+    	},
+    	back: {
+    		personSchool: 'University of Connecticut',
+    		numFollowers: 14,
+    		numFollowing: 55,
+    		numStartups: 2,
+    		quickBits: [
+    			'Interened at someplace',
+    			'Studied at some place',
+    			'Created something somewhere',
+    		],
+    		images: [
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    		],
+    	},
+      flippedClass: '',
+    },
+    {
+    	id: 7,
+    	front: {
+    		personProfileImage: 'http://www.loudounsmilecenter.com/images/image_implant.jpg',
+    		personName: 'John Smith',
+    		personProfession: 'Spanish Cuisine Chef',
+    		personMainImage: 'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    		personSummary: 'Chef in NYC specializing in spanish food',
+    	},
+    	back: {
+    		personSchool: 'University of Connecticut',
+    		numFollowers: 14,
+    		numFollowing: 55,
+    		numStartups: 2,
+    		quickBits: [
+    			'Interened at someplace',
+    			'Studied at some place',
+    			'Created something somewhere',
+    		],
+    		images: [
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    			'http://images.freeimages.com/images/previews/10e/dna-helix-background-image-1-1632628.jpg',
+    		],
+    	},
+      flippedClass: '',
+    },
+  ];
+}
+	</script>
+</body>
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		SquareOne
+	</title>
+	<link rel="stylesheet" type="text/css" href="index.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+</head>
+<body>
+	<div class='h-100' ng-app='scrollView' ng-controller='scrollViewController as svc'>
+
+		<div class='view page-width'>
+		  <header class='view-header'>
+		    <nav class='page-width'>
+		      <div class='nav-item'>
+		        .
+		      </div>
+		      <div class='nav-item'>
+		        SquareOne
+		      </div>
+		      <div class='nav-item'>
+		        .
+		      </div>
+		    </nav>
+		  </header>
+		  <div class="all-button">
+		  	<div class="box-shadow"></div>
+		  	All
+		  </div>
+		  <div class='scroll-view'>
+		    
+		    <div ng-repeat='item in svc.data' ng-click='svc.flipCard(item.id)' class='idea {{item.footerClass}}'>
+		    	<div class="box-shadow">
+		    	</div>
+		      <div class='front'>
+		     
+		      <header>
+		        <div class='content'>
+		          <article class='body'>
+		            {{item.text}}
+		          </article>
+		          <div class='likes'>
+		            <!--
+		            <img src='http://www.freeiconspng.com/uploads/new-flame-icon-png-12.png'/>
+		            -->
+		            <!--<img src='http://www.bmtinfonet.org/sites/default/files/imagecache/product_full/Donate%20candle-flame%20In%20Memory.png'/>
+		            -->
+		            <img src='http://cliparts.co/cliparts/gie/EdM/gieEdM4AT.svg'/>
+		            <label>
+		              {{item.id}}
+		            </label>
+		          </div>
+		        </div>
+		      </header>
+		      <footer class='expanded'>
+		        <div class='content'>
+		        
+		          <div class='person'>
+		            <img src='{{item.personImage}}'/>
+		            <div class='details'>
+		              <label class='name'>
+		                {{item.name}}
+		              </label>
+		              <label class='profession'>
+		                {{item.profession}}
+		              </label>
+		            </div>
+		          </div>
+		          
+		          <div class='interaction'>
+		            <div class='icon-box comments'>
+		              <img src='https://d30y9cdsu7xlg0.cloudfront.net/png/5907-200.png'/>
+		              <label>
+		                {{item.id}}
+		              </label>
+		            </div>
+		            
+		            <div class='icon-box shares'>
+		              <img src='https://d30y9cdsu7xlg0.cloudfront.net/png/152855-200.png'/>
+		              <label>
+		                {{item.id}}
+		              </label>
+		            </div>
+		          </div>
+		          
+		        </div>
+		      </footer>
+		      <footer class='shrunk'>
+		        <div class='content'>
+		        
+		        	<div class='comments'>
+		        		<label>
+		        			{{item.id}}
+		        		</label>
+		        		<label>
+		        			Comments
+		        		</label>
+		        	</div>
+		          
+		        </div>
+		      </footer>
+		    </div>
+		    <div class='back'>
+		      <div class='content'>
+		        Back of Card
+		      </div>
+		    </div>
+		    </div>
+
+		  </div> <!-- end scroll-view -->
+
+		  <!--
+		  
+		  <footer class='view-footer'>
+		    <nav class='page-width'>
+		      <div class='nav-item'>
+		        one
+		      </div>
+		      <div class='nav-item'>
+		        one
+		      </div>
+		      <div class='nav-item'>
+		        one
+		      </div>
+		      <div class='nav-item'>
+		        one
+		      </div>
+		    </nav>
+		  </footer>
+
+		  -->
+		</div> <!-- end view -->
+
+
+
+	</div>
+
+	<script type="text/javascript">
+		angular.module('scrollView', [])
+.controller('scrollViewController', scrollViewController);
+
+function scrollViewController() {
+	var self = this;
+  
+  self.flipCard = function(id) {
+  	//actually expands the card
+
+  	var classs = self.data[id - 1].footerClass;
+  	/*
+    if(classs === '') {
+    	self.data[id - 1].flippedClass = 'flip';
+    } else {
+    	self.data[id - 1].flippedClass = '';
+    }
+    */
+    if(classs === 'shrunk') {
+    	self.data[id - 1].footerClass = 'expanded';
+    } else {
+    	self.data[id - 1].footerClass = 'shrunk';
+    }
+  };
+  self.data = [
+  	{
+    	id: 1,
+    	title : 'one',
+      img: 'http://simpleicon.com/wp-content/uploads/light-bulb-3.png',
+      text: 'dolor sit amet, consectetur adipiscing elit, sed do eiusmod aliqua.',
+      personImage: 'http://www.loudounsmilecenter.com/images/image_implant.jpg',
+      footerClass: 'shrunk',
+      name: 'John Smith',
+      profession: 'Spanish Cuisine Chef'
+    },
+    {
+    	id: 2,
+    	title : 'two',
+      img: 'http://simpleicon.com/wp-content/uploads/light-bulb-3.png',
+      text: 'Lorem ip consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.',
+      personImage: 'http://www.loudounsmilecenter.com/images/image_implant.jpg',
+      footerClass: 'shrunk',
+      name: 'John Smith',
+      profession: 'Spanish Cuisine Chef'
+    },
+    {
+    	id: 3,
+    	title : 'three',
+      img: 'http://simpleicon.com/wp-content/uploads/light-bulb-3.png',
+      text: 'Lorem ipsum dolor sit amet, et dolore magna aliqua.',
+      personImage: 'http://www.loudounsmilecenter.com/images/image_implant.jpg',
+      footerClass: 'shrunk',
+      name: 'John Smith',
+      profession: 'Spanish Cuisine Chef'
+    },
+    {
+    	id: 4,
+    	title: 'four',
+      img: 'http://simpleicon.com/wp-content/uploads/light-bulb-3.png',
+      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.',
+      personImage: 'http://www.loudounsmilecenter.com/images/image_implant.jpg',
+      footerClass: 'shrunk',
+      name: 'John Smith',
+      profession: 'Spanish Cuisine Chef'
+    },
+     {
+    	id: 5,
+    	title: 'four',
+      img: 'http://simpleicon.com/wp-content/uploads/light-bulb-3.png',
+      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.',
+      personImage: 'http://www.loudounsmilecenter.com/images/image_implant.jpg',
+      footerClass: 'shrunk',
+      name: 'John Smith',
+      profession: 'Spanish Cuisine Chef'
+    },
+     {
+    	id: 6,
+    	title: 'four',
+      img: 'http://simpleicon.com/wp-content/uploads/light-bulb-3.png',
+      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.',
+      personImage: 'http://www.loudounsmilecenter.com/images/image_implant.jpg',
+      footerClass: 'shrunk',
+      name: 'John Smith',
+      profession: 'Spanish Cuisine Chef'
+    },
+    {
+    	id: 7,
+    	title: 'four',
+      img: 'http://simpleicon.com/wp-content/uploads/light-bulb-3.png',
+      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.',
+      personImage: 'http://www.loudounsmilecenter.com/images/image_implant.jpg',
+      footerClass: 'shrunk',
+      name: 'John Smith',
+      profession: 'Spanish Cuisine Chef'
+    },
+  ];
+}
+	</script>
+</body>
+</html>
